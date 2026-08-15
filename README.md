@@ -1,8 +1,12 @@
 # dsh-shortcuts — 输入框快捷短语插件
 
+<img width="1926" height="278" alt="image" src="https://github.com/user-attachments/assets/8928d0c2-356c-41b7-a61c-c9663a153d41" />
+
+
+
 为 DeepSeek Harness（dsh）Web 界面的输入框移植 ClaudEasy 的「快捷短语 / 快捷标签」功能：在输入卡片工具行的左侧显示一排彩虹色键盘键帽样式的短语标签。
 
-## 功能（与 ClaudEasy 对齐）
+## 功能
 
 - **一键填充**：点击标签 → 输入框草稿被替换为该短语，焦点回到输入框、光标落在末尾（不自动发送）
 - **悬停删除**：鼠标悬停标签时，右上角出现小 `×`，点击删除该短语
