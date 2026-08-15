@@ -1,0 +1,30 @@
+{
+	"name": "dsh-shortcuts",
+	"version": "1.0.0",
+	"description": "Quick prompt phrases for the dsh web composer: rainbow keycap tags in the input tool row that fill the draft with one click (ported from ClaudEasy's quick prompt tags)",
+	"license": "MIT",
+	"keywords": [
+		"dsh",
+		"dsh-plugin",
+		"deepseek-harness",
+		"deepseek",
+		"cordis",
+		"cordis-plugin",
+		"quick-phrases"
+	],
+	"type": "module",
+	"main": "lib/index.js",
+	"exports": {
+		".": {
+			"default": "./lib/index.js"
+		},
+		"./client": "./client.js",
+		"./package.json": "./package.json"
+	},
+	"dsh": {
+		"client": {
+			"platform": "web",
+			"immediately": true
+		}
+	}
+}
