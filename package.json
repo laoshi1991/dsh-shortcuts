@@ -1,7 +1,7 @@
 {
 	"name": "dsh-shortcuts",
 	"version": "1.0.0",
-	"description": "Quick prompt phrases for the dsh web composer: rainbow keycap tags in the input tool row that fill the draft with one click (ported from ClaudEasy's quick prompt tags)",
+	"description": "Quick prompt phrases for the dsh web composer: rainbow keycap tags in the input tool row that fill the draft with one click",
 	"license": "MIT",
 	"keywords": [
 		"dsh",

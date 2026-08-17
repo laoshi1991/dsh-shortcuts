@@ -1,8 +1,7 @@
 /**
  * dsh-shortcuts, browser half.
  *
- * Quick prompt phrases for the dsh web composer — a faithful port of
- * ClaudEasy's quick prompt tags (src/lib/components/PromptInput.svelte):
+ * Quick prompt phrases for the dsh web composer:
  * a row of rainbow keycap tags inside the composer card's tool row.
  *
  *   · click a tag → the draft becomes that phrase (attachments untouched),
@@ -10,7 +9,7 @@
  *   · hover a tag → a small × appears at its top-right corner to delete it
  *   · "+" after the row → inline mini input; Enter commits, Escape cancels,
  *     blur with text commits, blur empty cancels
- *   · at most 8 tags, each at most 7 visible characters (ClaudEasy limits)
+ *   · at most 8 tags, each at most 7 visible characters
  *   · tags persist in localStorage under "dsh:quick-phrases" and are shared
  *     across sessions and tabs of the same browser profile
  *   · defaults follow the UI language ("继续" / "你还在吗") until the user
@@ -40,7 +39,7 @@ window.__ModuleLoader__.load({
 		//#region constants
 		/** localStorage key holding the user's tag list (JSON string array). */
 		const STORAGE_KEY = "dsh:quick-phrases";
-		/** ClaudEasy limits, kept verbatim: 8 tags max, 7 characters per tag. */
+		/** Limits: 8 tags max, 7 characters per tag. */
 		const MAX_TAGS = 8;
 		const MAX_TAG_LENGTH = 7;
 		/** This plugin's locale dictionary namespace (locale seat `t`). */
@@ -49,9 +48,8 @@ window.__ModuleLoader__.load({
 
 		//#region css
 		/**
-		 * Rainbow keycap palette — ClaudEasy's TAG_RAINBOW_COLORS ported from
-		 * Tailwind classes to plain rgba(). Index i paints with palette[i % 8]:
-		 * rose, orange, amber, emerald, cyan, blue, violet, pink.
+		 * Rainbow keycap palette in plain rgba(). Index i paints with
+		 * palette[i % 8]: rose, orange, amber, emerald, cyan, blue, violet, pink.
 		 */
 		const CSS = [
 			".dshqp-wrap{display:inline-flex;align-items:center;gap:4px;min-height:24px;flex:0 1 auto;min-width:0;}",
@@ -123,7 +121,7 @@ window.__ModuleLoader__.load({
 		//#region storage
 		/**
 		 * Read the persisted tag list. Missing or corrupt data falls back to
-		 * the locale-derived defaults (ClaudEasy: "继续" / "你还在吗"); an
+		 * the locale-derived defaults ("继续" / "你还在吗"); an
 		 * explicitly saved list — even an empty one — always wins, so deleting
 		 * every tag sticks.
 		 * @param {((key: string) => string)} t - locale seat translate.
@@ -163,8 +161,8 @@ window.__ModuleLoader__.load({
 		 * Return focus to the composer textarea after a tag click: walk up
 		 * from the clicked button to the innermost ancestor that contains the
 		 * composer's textarea (marked data-phase by ui-conversation), focus
-		 * it, and park the caret at the end — ClaudEasy's setCaretPosition
-		 * behavior. Runs in requestAnimationFrame so the setDraft re-render
+		 * it, and park the caret at the end.
+		 * Runs in requestAnimationFrame so the setDraft re-render
 		 * has landed on the controlled textarea first.
 		 * @param {Element|null} fromEl - the clicked tag button element.
 		 */
@@ -220,7 +218,7 @@ window.__ModuleLoader__.load({
 				requestAnimationFrame(() => focusComposerTextarea(btn));
 			};
 
-			/** × click: drop one tag (index-addressed, like ClaudEasy). */
+			/** × click: drop one tag (index-addressed). */
 			const removeTag = (index) => {
 				update(tags.filter((_, i) => i !== index));
 			};
@@ -238,7 +236,7 @@ window.__ModuleLoader__.load({
 				setDraftText("");
 			};
 
-			/** Commit the mini input: trimmed, capped, deduped-never (ClaudEasy allows dupes). */
+			/** Commit the mini input: trimmed, capped, dupes allowed. */
 			const commitAdding = () => {
 				const text = draftText.trim().slice(0, MAX_TAG_LENGTH);
 				setAdding(false);
@@ -257,7 +255,7 @@ window.__ModuleLoader__.load({
 				}
 			};
 
-			/** ClaudEasy cancels on empty blur; non-empty blur keeps the editor open. Committing is friendlier and loses nothing. */
+			/** Blur with text commits; empty blur cancels — friendlier than keeping the editor open and loses nothing. */
 			const handleInputBlur = () => {
 				if (draftText.trim()) commitAdding();
 				else cancelAdding();
